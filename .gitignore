@@ -1,5 +1,11 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
+# User Added
+
+playwright-report
+test-results
+bun.lockb
+
 # Logs
 
 logs
