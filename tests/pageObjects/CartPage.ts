@@ -7,4 +7,5 @@ await expect(page.locator('[data-test="item-0-title-link"]')).toBeVisible();
 await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
 await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
 await page.locator('[data-test="continue-shopping"]').click();
+await expect(page.locator('[data-test="title"]')).toContainText('Your Cart');
 }
