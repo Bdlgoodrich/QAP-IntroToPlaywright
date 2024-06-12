@@ -1,4 +1,4 @@
-import { Locator, type Page, expect, } from '@playwright/test';
+import {type Page, expect } from '@playwright/test';
 
 export class ProductPage {
     private readonly page: Page
@@ -7,14 +7,16 @@ export class ProductPage {
         this.page = page
     }
 
-    async getCartItemNumber(): Promise<Number> {
-        if (await this.page.locator('[data-test="shopping-cart-badge"]').isHidden()) return 1;
-        return parseInt(await this.page.locator('[data-test="shopping-cart-badge"]').textContent());
+    async verifyCartItemNumber(expectedNum:Number): Promise<void> {
+        if (expectedNum===0){
+            await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toBeHidden();
+        }
+        await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toContainText(expectedNum.toString());
     }
-
+/*
     async goToCart(): Promise<CartPage> {
         return cartPage: Cartpage;
-    }
+    }*/
 
     async openSideBar(): Promise<void> {
         await this.page.getByRole('button', { name: 'Open Menu' }).click();
@@ -53,13 +55,14 @@ export class ProductPage {
         await this.page.locator('[data-test="product-sort-container"]').selectOption('hilo');
     }
 
+    async verifyZtoASort(): Promise<void> {
+        await this.page.locator('.data-test="inventory-item-name"'(0).
+    }
         await page.locator('[data-test="item-0-img-link"]').click();
         await page.locator('[data-test="item-sauce-labs-bike-light-img"]').click();
         await page.locator('[data-test="back-to-products"]').click();
         await page.locator('[data-test="shopping-cart-link"]').click();
 
-await expect(page.locator('[data-test="remove"]')).toBeVisible();
-    
 
 
 }

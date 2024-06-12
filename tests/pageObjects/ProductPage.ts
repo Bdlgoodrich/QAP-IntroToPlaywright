@@ -1,4 +1,4 @@
-import { Locator, type Page, expect } from '@playwright/test';
+import {type Page, expect } from '@playwright/test';
 
 export class ProductPage {
     private readonly page: Page
@@ -8,7 +8,7 @@ export class ProductPage {
     }
 
     async verifyTitle(): Promise<void> {
-         this.page.locator('.title')
+        expect(this.page.locator('.title')).toContainText('Swag Labs')
     }
 
     async verifyAddToCartButtonIsVisible(): Promise<void> {

@@ -1,11 +1,37 @@
-import { test, expect } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
-await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('2');
-await expect(page.locator('[data-test="item-4-title-link"]')).toBeVisible();
-await expect(page.locator('[data-test="item-0-title-link"]')).toBeVisible();
-await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
-await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
-await page.locator('[data-test="continue-shopping"]').click();
-await expect(page.locator('[data-test="title"]')).toContainText('Your Cart');
+export class ProductsPage {
+    private readonly page: Page
+
+    constructor(page: Page) {
+        this.page = page
+    }
+    
+    async verifyHeaderTitle(): Promise<void> {
+        await expect(this.page.locator('[data-test="title"]')).toContainText('Your Cart');
+    }
+
+    async verifyCartContainsBackpackAndBikeLight(): Promise<void> {
+        await expect(this.page.locator('[data-test="item-4-title-link"]')).toBeVisible();
+        await expect(this.page.locator('[data-test="item-0-title-link"]')).toBeVisible();
+    }
+
+    async clickBackpackName(): Promise<void> {
+        await this.page.locator('[data-test="item-4-title-link"]').click();
+    }
+
+    async removeBikeLight(): Promise<void> {
+        await this.page.locator('[data-test="remove-sauce-labs-bike-light"]').click();
+    }
+    async verifyItemRemoved(): Promise<void> {
+        await expect(this.page.locator('.removed_cart_item')).toBeTruthy;
+    }
+
+    async clickContinueShoppingButton(): Promise<void> {
+        await this.page.locator('[data-test="continue-shopping"]').click();
+    }
+    async clickCheckoutButton(): Promise<void> {
+        await this.page.locator('[data-test="checkout"]').click();
+    }    
+
 }

@@ -1,4 +1,4 @@
-import { Locator, type Page, expect } from '@playwright/test';
+import {type Page, expect } from '@playwright/test';
 
 
 export class ProductsPage {
@@ -40,7 +40,7 @@ export class ProductsPage {
 
     async sortItems(sortBy): Promise<void>{
         await this.page.locator('[data-test="product-sort-container"]').selectOption(sortBy);
-        
+
     }
 }
 /*
