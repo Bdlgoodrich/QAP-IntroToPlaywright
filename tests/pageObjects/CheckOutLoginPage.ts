@@ -1,6 +1,6 @@
 import { Page, expect } from '@playwright/test';
 
-export class CheckOUtLoginPage {
+export class CheckoutLoginPage {
     private readonly page: Page
 
     constructor(page: Page) {
@@ -28,11 +28,6 @@ export class CheckOUtLoginPage {
         await expect(this.page.locator('[data-test="payment-info-value"]')).toContainText('SauceCard #31337');
         await expect(this.page.locator('[data-test="shipping-info-value"]')).toContainText('Free Pony Express Delivery!');
         await expect(this.page.locator('[data-test="subtotal-label"]')).toContainText('Item total: $39.98');
-    }
-
-
-
-
     }
 
 }

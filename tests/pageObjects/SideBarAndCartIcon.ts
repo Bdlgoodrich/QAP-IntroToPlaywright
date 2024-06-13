@@ -1,10 +1,14 @@
 import {type Page, expect } from '@playwright/test';
 
-export class ProductPage {
+export class SideBarAndCartIcon {
     private readonly page: Page
 
     constructor(page: Page) {
         this.page = page
+    }
+
+    async gotoCart(): Promise<void> {
+        await this.page.locator('[data-test="shopping-cart-link"]').click();
     }
 
     async verifyCartItemNumber(expectedNum:Number): Promise<void> {
@@ -13,10 +17,6 @@ export class ProductPage {
         }
         await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toContainText(expectedNum.toString());
     }
-/*
-    async goToCart(): Promise<CartPage> {
-        return cartPage: Cartpage;
-    }*/
 
     async openSideBar(): Promise<void> {
         await this.page.getByRole('button', { name: 'Open Menu' }).click();
@@ -42,27 +42,8 @@ export class ProductPage {
         await this.page.locator('[data-test="reset-sidebar-link"]').click();
     }
 
-    async sortAtoZ(): Promise<void> {
-        await this.page.locator('[data-test="product-sort-container"]').selectOption('az');
+    async verifyAboutPageTitle(): Promise<void> {
+        await expect(this.page.title()).toContainEqual('Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing');
     }
-    async sortZtoA(): Promise<void> {
-        await this.page.locator('[data-test="product-sort-container"]').selectOption('za');
-    }
-    async sortHightoLow(): Promise<void> {
-        await this.page.locator('[data-test="product-sort-container"]').selectOption('lohi');
-    }
-    async sortLowtoHigh(): Promise<void> {
-        await this.page.locator('[data-test="product-sort-container"]').selectOption('hilo');
-    }
-
-    async verifyZtoASort(): Promise<void> {
-        await this.page.locator('.data-test="inventory-item-name"'(0).
-    }
-        await page.locator('[data-test="item-0-img-link"]').click();
-        await page.locator('[data-test="item-sauce-labs-bike-light-img"]').click();
-        await page.locator('[data-test="back-to-products"]').click();
-        await page.locator('[data-test="shopping-cart-link"]').click();
-
-
 
 }

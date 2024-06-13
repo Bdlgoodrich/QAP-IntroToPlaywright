@@ -7,15 +7,18 @@ export class ProductPage {
         this.page = page
     }
 
-    async verifyTitle(): Promise<void> {
-        expect(this.page.locator('.title')).toContainText('Swag Labs')
-    }
-
     async verifyAddToCartButtonIsVisible(): Promise<void> {
         await expect(this.page.locator('[data-test="add-to-cart"]')).toBeVisible();
     }
     async verifyRemoveButtonIsVisible(): Promise<void> {
         await expect(this.page.locator('[data-test="remove"]')).toBeVisible();
+    }
+
+    async clickAddToCartButton(): Promise<void> {
+        await this.page.locator('[data-test="add-to-cart"]').click();
+    }
+    async clickRemoveButton(): Promise<void>{
+        await this.page.locator('[data-test="remove"]').click();
     }
 
     async clickBackToProducts(): Promise<void> {
