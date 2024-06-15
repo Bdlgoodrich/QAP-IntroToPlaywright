@@ -15,14 +15,15 @@ test('loginValidUser', async ({ page }) => {
   sideBar.openSideBar();
   sideBar.gotoSideBarAllItems();
   sideBar.verifyAboutPageTitle();
-  inventoryPage.gotoInventoryPage();
 
   inventoryPage.gotoBackpackPage();
   sideBar.openSideBar();
-  sideBar.gotoSideBarAllItems();
-  inventoryPage.verifyTitle();
+  sideBar.gotoSideBarAbout();
+  sideBar.verifyAboutPageTitle();
 
+  inventoryPage.gotoInventoryPage();
   sideBar.openSideBar();
   sideBar.gotoSideBarLogout();
   loginPage.verifyTitle();
+  inventoryPage.gotoInventoryPage();
 });
