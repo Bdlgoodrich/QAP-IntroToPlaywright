@@ -27,7 +27,7 @@ export class InventoryPage {
     }
     async deleteBackpackFromCart(): Promise<void> {
 
-        await this.page.locator('[data-test="remove-sauce-labs-backpack]').click();
+        await this.page.locator('[data-test="remove-sauce-labs-backpack"]').click();
     }
 
     async verifyBackpackAddItemButtonIsVisible(): Promise<void> {

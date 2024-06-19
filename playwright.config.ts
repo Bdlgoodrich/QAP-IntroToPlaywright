@@ -1,5 +1,7 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import devices from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+
 
 /**
  * Read environment variables from file.
@@ -106,4 +108,9 @@ const config: PlaywrightTestConfig = {
   // },
 };
 
-export default config;
+//export default config;
+export default defineConfig({
+  use: {
+    testIdAttribute: 'data-test'
+  }
+});
