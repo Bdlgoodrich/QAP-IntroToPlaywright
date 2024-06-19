@@ -13,17 +13,23 @@ test('loginValidUser', async ({ page }) => {
 
   inventoryPage.gotoBackpackPage();
   sideBar.openSideBar();
-  sideBar.gotoSideBarAllItems();
-  sideBar.verifyAboutPageTitle();
+  sideBar.sideBarGotoAllItems();
+  inventoryPage.verifyTitle();
 
   inventoryPage.gotoBackpackPage();
   sideBar.openSideBar();
-  sideBar.gotoSideBarAbout();
+  sideBar.sideBarGotoAbout();
   sideBar.verifyAboutPageTitle();
+
+  inventoryPage.addBackpackToCart();
+  inventoryPage.sortItems('lohi');
+  sideBar.sideBarReset();
+  sideBar.verifyReset();
 
   inventoryPage.gotoInventoryPage();
   sideBar.openSideBar();
-  sideBar.gotoSideBarLogout();
+  sideBar.sideBarLogout();
   loginPage.verifyTitle();
   inventoryPage.gotoInventoryPage();
+  
 });
