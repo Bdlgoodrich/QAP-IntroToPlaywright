@@ -15,6 +15,7 @@ import { defineConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './tests',
   testIgnore: '**/*example.*',
+
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -43,6 +44,7 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    testIdAttribute: 'data-test',
   },
 
   /* Configure projects for major browsers */
@@ -108,9 +110,4 @@ const config: PlaywrightTestConfig = {
   // },
 };
 
-//export default config;
-export default defineConfig({
-  use: {
-    testIdAttribute: 'data-test'
-  }
-});
+export default config;

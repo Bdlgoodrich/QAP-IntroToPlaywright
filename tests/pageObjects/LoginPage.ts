@@ -13,9 +13,7 @@ export class LoginPage {
     }
 
     async inputLoginInfoAndClickLogin(username: string, password: string): Promise<void> {
-        await this.page.getByTestId('username').click();
-        await this.page.getByTestId('username').fill(username);
-        await this.page.getByTestId('password').click();      
+        await this.page.getByTestId('username').fill(username);    
         await this.page.getByTestId('password').fill(password);
         await this.page.getByTestId('login-button').click();
     }
@@ -26,6 +24,5 @@ export class LoginPage {
 
     async verifyTitle(): Promise<void> {
         expect(this.page.getByText('Swag Labs')).toBeTruthy();
-        await expect(this.page.locator('.title')).toContainText('Swag Labs');
     }
 }

@@ -1,0 +1,9 @@
+{
+    "editor.emptySelectionClipboard": true,
+    "workbench.remoteIndicator.showExtensionRecommendations": false,
+    "workbench.activityBar.location": "default",
+    "zenMode.centerLayout": true,
+    "zenMode.fullScreen": false,
+    "zenMode.hideActivityBar": true,
+    "window.commandCenter": true
+}
