@@ -46,10 +46,10 @@ export class InventoryPage {
         await this.page.locator('[data-test="product-sort-container"]').selectOption(sortBy);
     }
     async verifySorted(sortBy: string): Promise<void> {
-        if (sortBy == 'az') await expect(this.page.getByTestId('inventory_item_name').first()).toContainText('backpack');
-        else if (sortBy == 'za') await expect(this.page.getByTestId('inventory_item_name').first()).toContainText(['Test.allTheThings', 'Red']);
-        else if (sortBy == 'hilo') await expect(this.page.getByTestId('inventory_item_name').first()).toContainText('Fleece Jacket');
-        else if (sortBy == 'lohi') await expect(this.page.getByTestId('inventory_item_name').first()).toContainText('Onesie');
+        if (sortBy == 'az') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Backpack');
+        else if (sortBy == 'za') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Test.allTheThings');
+        else if (sortBy == 'hilo') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Fleece Jacket');
+        else if (sortBy == 'lohi') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Onesie');
         else {console.error("sortBy must be 'az', 'za', 'hilo', or 'lohi' ");
         }
     }
