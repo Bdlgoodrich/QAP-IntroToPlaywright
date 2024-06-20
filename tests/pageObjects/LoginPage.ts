@@ -32,6 +32,6 @@ export class LoginPage {
     }
 
     async verifyTitle(): Promise<void> {
-        expect(this.page.getByText('Swag Labs')).toBeVisible();
+        await expect(this.page.getByText('Swag Labs')).toBeVisible();
     }
 }

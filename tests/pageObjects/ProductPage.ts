@@ -25,17 +25,4 @@ export class ProductPage {
         await this.page.locator('[data-test="back-to-products"]').click();
     }
 }
-/*test('ProductPageValidations', async ({ page }) => {
-await expect(page.locator('[data-test="inventory-item-name"]')).toBeVisible();
 
-        await page.locator('[data-test="continue-shopping"]').click();
-await page.locator('[data-test="add-to-cart"]').click();
-
-await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
-
-await page.locator('[data-test="remove"]').click();
-await expect(page.locator('[data-test="add-to-cart"]')).toBeVisible();
-await expect(page.locator('[data-test="shopping-cart-badge"]')).toBeHidden;
-
-
-}*/

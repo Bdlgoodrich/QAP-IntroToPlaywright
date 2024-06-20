@@ -28,19 +28,19 @@ export class SideBarAndCartIcon {
     }
 
     async sideBarGotoAllItems(): Promise<void> {
-        this.openSideBar();
+        await this.openSideBar();
         await this.page.locator('[data-test="inventory-sidebar-link"]').click();
     }
     async sideBarGotoAbout(): Promise<void> {
-        this.openSideBar();
+        await this.openSideBar();
         await this.page.locator('[data-test="about-sidebar-link"]').click();
     }
     async sideBarLogout(): Promise<void> {
-        this.openSideBar();
+        await this.openSideBar();
         await this.page.locator('[data-test="logout-sidebar-link"]').click();
     }
     async sideBarReset(): Promise<void> {
-        this.openSideBar();
+        await this.openSideBar();
         await this.page.locator('[data-test="reset-sidebar-link"]').click();
     }
 
@@ -49,10 +49,10 @@ export class SideBarAndCartIcon {
     }
 
     async verifyReset():Promise<void> {
-        this.verifyCartItemNumber(0);
+        await this.verifyCartItemNumber(0);
         const inventoryPage = new InventoryPage(this.page);
-        inventoryPage.verifyBackpackAddItemButtonIsVisible();
-        inventoryPage.verifySorted('AtoZ');
+        await inventoryPage.verifyBackpackAddItemButtonIsVisible();
+        await inventoryPage.verifySorted('az');
       }
 
 }

@@ -24,7 +24,7 @@ export class CartPage {
         await this.page.locator('[data-test="remove-sauce-labs-bike-light"]').click();
     }
     async verifyItemRemoved(): Promise<void> {
-        await expect(this.page.locator('.removed_cart_item')).toBeTruthy;
+        await expect(this.page.locator('.removed_cart_item')).toBeTruthy();
     }
 
     async clickContinueShoppingButton(): Promise<void> {
