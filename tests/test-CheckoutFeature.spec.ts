@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, } from '@playwright/test';
 import { InventoryPage } from './pageObjects/InventoryPage';
 import { LoginPage } from './pageObjects/LoginPage';
 import { CartPage } from './pageObjects/CartPage';
@@ -8,49 +8,48 @@ import { CheckoutPage } from './pageObjects/CheckOutPage';
 
 test('AddContAddCheckout', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  loginPage.gotoLoginPage();
-  loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
+  await loginPage.gotoLoginPage();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
   const inventoryPage = new InventoryPage(page);
-  inventoryPage.addBackpackToCart();
+  await inventoryPage.addBackpackToCart();
   const cartIcon = new SideBarAndCartIcon(page);
-  cartIcon.gotoCart();
+  await cartIcon.gotoCart();
 
   const cartPage = new CartPage(page);
-  cartPage.verifyHeaderTitle();
-  cartPage.clickContinueShoppingButton();
-  inventoryPage.verifyTitle();
-  inventoryPage.addBikeLightToCart();
-  cartIcon.gotoCart();
-  cartPage.clickCheckoutButton();
+  await cartPage.verifyHeaderTitle();
+  await cartPage.clickContinueShoppingButton();
+  await inventoryPage.verifyTitle();
+  await inventoryPage.addBikeLightToCart();
+  await cartIcon.gotoCart();
+  await cartPage.clickCheckoutButton();
 
   const checkoutLoginPage = new CheckoutLoginPage(page);
-  checkoutLoginPage.clickCancelButton();
-  cartPage.verifyHeaderTitle();
-  cartPage.clickCheckoutButton();
+  await checkoutLoginPage.clickCancelButton();
+  await cartPage.verifyHeaderTitle();
+  await cartPage.clickCheckoutButton();
 
-  checkoutLoginPage.inputLoginInfo();
-  checkoutLoginPage.clickContinueButton();
+  await checkoutLoginPage.inputLoginInfo();
+  await checkoutLoginPage.clickContinueButton();
 
   const checkoutPage = new CheckoutPage(page);
-  checkoutPage.verifyHeaderTitle();
-  checkoutPage.clickCancelButton();
-  cartPage.verifyHeaderTitle();
-  cartPage.clickCheckoutButton();
+  await checkoutPage.verifyHeaderTitle();
+  await checkoutPage.clickCancelButton();
+  await cartPage.verifyHeaderTitle();
+  await cartPage.clickCheckoutButton();
 
-  checkoutLoginPage.inputLoginInfo();
-  checkoutLoginPage.clickContinueButton();
-  checkoutPage.verifyHeaderTitle();
+  await checkoutLoginPage.inputLoginInfo();
+  await checkoutLoginPage.clickContinueButton();
+  await checkoutPage.verifyHeaderTitle();
 
-  checkoutPage.clickCancelButton();
-  inventoryPage.verifyTitle();
-  cartIcon.gotoCart();
-  cartPage.clickCheckoutButton();
-  checkoutLoginPage.inputLoginInfo();
-  checkoutLoginPage.clickContinueButton();
-  checkoutPage.clickFinishButton();
-  checkoutPage.verifyThankYouText();
-  checkoutPage.clickBackHomeButton();
-  inventoryPage.verifyTitle();
-
+  await checkoutPage.clickCancelButton();
+  await inventoryPage.verifyTitle();
+  await cartIcon.gotoCart();
+  await cartPage.clickCheckoutButton();
+  await checkoutLoginPage.inputLoginInfo();
+  await checkoutLoginPage.clickContinueButton();
+  await checkoutPage.clickFinishButton();
+  await checkoutPage.verifyThankYouText();
+  await checkoutPage.clickBackHomeButton();
+  await inventoryPage.verifyTitle();
 
 });

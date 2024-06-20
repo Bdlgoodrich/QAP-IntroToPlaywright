@@ -2,27 +2,36 @@ import {type Page, Locator, expect } from '@playwright/test';
 
 
 export class LoginPage {
-    private readonly page: Page
+    private readonly page: Page;
+    private readonly usernameInput: Locator;
+    private readonly passwordInput: Locator;
+    private readonly loginButton: Locator;
+    private readonly errorMessage: Locator;
+
 
     constructor(page: Page) {
-        this.page = page
+        this.page = page;
+        this.usernameInput = page.getByTestId('username');
+        this.passwordInput = page.getByTestId('password');
+        this.loginButton = page.getByTestId('login-button');
+        this.errorMessage = page.getByTestId('error');
     }
 
     async gotoLoginPage(): Promise<void> {
         await this.page.goto('https://saucedemo.com')
     }
 
-    async inputLoginInfoAndClickLogin(username: string, password: string): Promise<void> {
-        await this.page.getByTestId('username').fill(username);    
-        await this.page.getByTestId('password').fill(password);
-        await this.page.getByTestId('login-button').click();
+    async inputLoginInfoAndClickLogin(username: string, password: string): Promise<void> {  
+        await this.usernameInput.fill(username);  
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
     }
 
     async verifyErrorMessageVisible(): Promise<void> {
-        await expect(this.page.getByTestId('error')).toBeVisible();
+        await expect(this.errorMessage).toBeVisible();
     }
 
     async verifyTitle(): Promise<void> {
-        expect(this.page.getByText('Swag Labs')).toBeTruthy();
+        expect(this.page.getByText('Swag Labs')).toBeVisible();
     }
 }

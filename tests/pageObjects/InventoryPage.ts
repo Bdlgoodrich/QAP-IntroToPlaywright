@@ -13,7 +13,7 @@ export class InventoryPage {
     }
 
     async verifyTitle(): Promise<void> {
-        expect(this.page.locator('.title')).toContainText('Products');
+        await expect(this.page.locator('.title')).toContainText('Products');
     }
     async verifyHeaderTitle(): Promise<void> {
         await expect(this.page.locator('[data-test="title"]')).toContainText('Products');

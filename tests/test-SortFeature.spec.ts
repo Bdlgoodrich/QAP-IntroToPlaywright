@@ -4,12 +4,13 @@ import { LoginPage } from './pageObjects/LoginPage';
 
 test('loginValidUser', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  loginPage.gotoLoginPage();
-  loginPage.verifyTitle();
-  loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
+  
   const inventoryPage = new InventoryPage(page);
-  inventoryPage.sortItems('za');
-  inventoryPage.verifySorted('za');
-  inventoryPage.sortItems('lohi');
-  inventoryPage.verifySorted('lohi');
+  await inventoryPage.sortItems('za');
+  await inventoryPage.verifySorted('za');
+  await inventoryPage.sortItems('lohi');
+  await inventoryPage.verifySorted('lohi');
 });
