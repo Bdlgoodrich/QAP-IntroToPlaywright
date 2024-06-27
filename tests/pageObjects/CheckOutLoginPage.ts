@@ -13,11 +13,11 @@ export class CheckoutLoginPage {
     }
 
     async clickContinueButton(): Promise<void> {
-        await this.page.locator('[data-test="cancel"]').click();
+        await this.page.locator('[data-test="continue"]').click();
     }
 
     async clickCancelButton(): Promise<void> {
-        await this.page.locator('[data-test="continue"]').click();
+        await this.page.locator('[data-test="cancel"]').click();
     }
 
     async verifyCheckoutInfo(): Promise<void> {

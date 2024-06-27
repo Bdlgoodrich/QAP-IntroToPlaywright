@@ -27,10 +27,43 @@ test('loginLockedOutUser', async ({ page }) => {
   await loginPage.verifyErrorMessageVisible();
 });
 
+test('loginWrongPassword', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'wrong_sauce');
+  await loginPage.verifyErrorMessageVisible();
+});
+
+test('loginNoPassword', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', '');
+  await loginPage.verifyErrorMessageVisible();
+});
+
+test('loginNoUserName', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('', 'secret_sauce');
+  await loginPage.verifyErrorMessageVisible();
+});
+
+test('loginNoUserNameAndNoPassword', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('', '');
+  await loginPage.verifyErrorMessageVisible();
+});
+
 test('loginProblemUser', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.gotoLoginPage();
   await loginPage.verifyTitle();
   await loginPage.inputLoginInfoAndClickLogin('problem_user', 'secret_sauce');
-  await loginPage.verifyErrorMessageVisible();
+  const inventoryPage = new InventoryPage(page);
+  await inventoryPage.verifyTitle();
 });

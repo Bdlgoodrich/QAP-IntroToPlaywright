@@ -6,7 +6,7 @@ import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon';
 import { CheckoutLoginPage } from './pageObjects/CheckOutLoginPage';
 import { CheckoutPage } from './pageObjects/CheckOutPage';
 
-test('AddContAddCheckout', async ({ page }) => {
+test('AddItemsAndCheckout', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.gotoLoginPage();
   await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
@@ -34,7 +34,8 @@ test('AddContAddCheckout', async ({ page }) => {
   const checkoutPage = new CheckoutPage(page);
   await checkoutPage.verifyHeaderTitle();
   await checkoutPage.clickCancelButton();
-  await cartPage.verifyHeaderTitle();
+  await inventoryPage.verifyHeaderTitle();
+  await cartIcon.gotoCart();
   await cartPage.clickCheckoutButton();
 
   await checkoutLoginPage.inputLoginInfo();

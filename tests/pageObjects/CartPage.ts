@@ -8,7 +8,7 @@ export class CartPage {
     }
     
     async verifyHeaderTitle(): Promise<void> {
-        await expect(this.page.locator('[data-test="title"]')).toContainText('Your Cart');
+        await expect(this.page.getByText('Your Cart')).toBeVisible();
     }
 
     async verifyCartContainsBackpackAndBikeLight(): Promise<void> {

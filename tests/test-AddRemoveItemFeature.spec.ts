@@ -3,6 +3,7 @@ import { InventoryPage } from './pageObjects/InventoryPage';
 import { LoginPage } from './pageObjects/LoginPage';
 import { ProductPage } from './pageObjects/ProductPage';
 import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon';
+import { CartPage } from './pageObjects/CartPage';
 
 test('verifyAddAndRemoveItemsFromInventoryPage', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -21,8 +22,11 @@ test('verifyAddAndRemoveItemsFromInventoryPage', async ({ page }) => {
     await inventoryPage.addBikeLightToCart();
     await cartIcon.verifyCartItemNumber(2);
     await inventoryPage.deleteBackpackFromCart();
-    await cartIcon.verifyCartItemNumber(1);
     await inventoryPage.verifyBackpackAddItemButtonIsVisible();
+    await cartIcon.verifyCartItemNumber(1);
+    await inventoryPage.addBackpackToCart();
+    const cartPage = new CartPage (page);
+    cartPage.verifyCartContainsBackpackAndBikeLight();
   });
 
 test('verifyAddAndRemoveFromProductPage', async ({ page }) => {
