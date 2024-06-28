@@ -21,7 +21,7 @@ test('verifyAddAndRemoveItemsFromInventoryPage', async ({ page }) => {
     await cartIcon.verifyCartItemNumber(1);
     await inventoryPage.addBikeLightToCart();
     await cartIcon.verifyCartItemNumber(2);
-    await inventoryPage.deleteBackpackFromCart();
+    await inventoryPage.removeBackpackFromCart();
     await inventoryPage.verifyBackpackAddItemButtonIsVisible();
     await cartIcon.verifyCartItemNumber(1);
     await inventoryPage.addBackpackToCart();
