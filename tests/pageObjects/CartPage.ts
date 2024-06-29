@@ -1,12 +1,17 @@
 import { Page, expect } from '@playwright/test';
 
 export class CartPage {
+
     private readonly page: Page
 
     constructor(page: Page) {
         this.page = page
     }
     
+    async gotoCheckoutStep1() {
+        await this.page.goto('/checkout-step-one.html');
+    }
+
     async verifyHeaderTitle(): Promise<void> {
         await expect(this.page.getByText('Your Cart')).toBeVisible();
     }

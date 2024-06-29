@@ -1,17 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { InventoryPage } from './pageObjects/InventoryPage';
-import { LoginPage } from './pageObjects/LoginPage';
+import { test, expect } from './Fixtures/fullFixture';
 
-test('verifySortFeature', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.gotoLoginPage();
-  await loginPage.verifyTitle();
-  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
-  
-  const inventoryPage = new InventoryPage(page);
-  await inventoryPage.verifySorted('az')
-  await inventoryPage.sortItems('za');
-  await inventoryPage.verifySorted('za');
-  await inventoryPage.sortItems('lohi');
-  await inventoryPage.verifySorted('lohi');
+test('verifySortFeature', async ({ auth, sauce }) => {
+  await sauce.inventoryPage.gotoInventoryPage();
+  await sauce.inventoryPage.verifySorted('az')
+  await sauce.inventoryPage.sortItems('za');
+  await sauce.inventoryPage.verifySorted('za');
+  await sauce.inventoryPage.sortItems('lohi');
+  await sauce.inventoryPage.verifySorted('lohi');
 });

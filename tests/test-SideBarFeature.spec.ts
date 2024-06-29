@@ -1,35 +1,26 @@
-import { test, expect } from '@playwright/test';
-import { InventoryPage } from './pageObjects/InventoryPage';
-import { LoginPage } from './pageObjects/LoginPage';
-import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon';
+import { test, expect } from './Fixtures/fullFixture';
 
-test('loginValidUser', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.gotoLoginPage();
-  await loginPage.verifyTitle();
-  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
-  const inventoryPage = new InventoryPage(page);
-  const sideBar = new SideBarAndCartIcon(page);
 
-  await inventoryPage.gotoBackpackPage();
-  await sideBar.openSideBar();
-  await sideBar.sideBarGotoAllItems();
-  await inventoryPage.verifyTitle();
+test('sidebarOptions', async ({auth, sauce}) => {
 
-  await inventoryPage.gotoBackpackPage();
-  await sideBar.openSideBar();
-  await sideBar.sideBarGotoAbout();
-  await sideBar.verifyAboutPageTitle();
+  await sauce.inventoryPage.gotoBackpackPage();
+  await sauce.sidebarAndCartIcon.openSideBar();
+  await sauce.sidebarAndCartIcon.sideBarGotoAllItems();
+  await sauce.inventoryPage.verifyTitle();
 
-  await inventoryPage.addBackpackToCart();
-  await inventoryPage.sortItems('lohi');
-  await sideBar.sideBarReset();
-  await sideBar.verifyReset();
+  await sauce.sidebarAndCartIcon.openSideBar();
+  await sauce.sidebarAndCartIcon.sideBarGotoAbout();
+  await sauce.sidebarAndCartIcon.verifyAboutPageTitle();
 
-  await inventoryPage.gotoInventoryPage();
-  await sideBar.openSideBar();
-  await sideBar.sideBarLogout();
-  await loginPage.verifyTitle();
-  await inventoryPage.gotoInventoryPage();
+  await sauce.inventoryPage.addBackpackToCart();
+  await sauce.inventoryPage.sortItems('lohi');
+  await sauce.sidebarAndCartIcon.sideBarReset();
+  await sauce.sidebarAndCartIcon.verifyReset();
+
+  await sauce.sidebarAndCartIcon.openSideBar();
+  await sauce.sidebarAndCartIcon.sideBarLogout();
+  await sauce.loginPage.verifyTitle();
+  await sauce.inventoryPage.gotoInventoryPage();
+  await sauce.inventoryPage.verifyBlank();
   
 });
