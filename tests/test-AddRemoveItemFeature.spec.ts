@@ -1,4 +1,4 @@
-import { test, expect } from './Fixtures/fullFixture';
+import { test } from './Fixtures/fixtureForCheckoutTests';
 
 test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, sauce }) => {
     await sauce.inventoryPage.gotoInventoryPage();
