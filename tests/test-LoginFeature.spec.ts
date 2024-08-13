@@ -1,65 +1,61 @@
 
-import { test, expect } from '@playwright/test';
-import { InventoryPage } from './pageObjects/Inventory-Page';
-import { LoginPage } from './pageObjects/Login-Page';
+import { test, /*expect*/ } from './Fixtures/docFixture';
 
+test('loginValidUser', async ({ loginPage, inventoryPage }) => {
 
-test('loginValidUser', async ({ sauce }) => {
-
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
-  await sauce.inventoryPage.verifyTitle();
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
+  await inventoryPage.verifyTitle();
 });
 
-test('loginErrorUser', async ({ sauce}) => {
-
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('error_user', 'secret_sauce');
-  await sauce.loginPage.verifyErrorMessageVisible();
+test('loginErrorUser', async ({ loginPage}) => {
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('error_user', 'secret_sauce');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginLockedOutUser', async ({ sauce }) => {
+test('loginLockedOutUser', async ({ loginPage }) => {
 
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('locked_out_user', 'secret_sauce');
-  await sauce.loginPage.verifyErrorMessageVisible();
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('locked_out_user', 'secret_sauce');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginWrongPassword', async ({ sauce }) => {
+test('loginWrongPassword', async ({ loginPage }) => {
 
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('standard_user', 'wrong_sauce');
-  await sauce.loginPage.verifyErrorMessageVisible();
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'wrong_sauce');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginNoPassword', async ({ sauce }) => {
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('standard_user', '');
-  await sauce.loginPage.verifyErrorMessageVisible();
+test('loginNoPassword', async ({ loginPage }) => {
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('standard_user', '');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginNoUserName', async ({ sauce }) => {
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('', 'secret_sauce');
-  await sauce.loginPage.verifyErrorMessageVisible();
+test('loginNoUserName', async ({ loginPage }) => {
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('', 'secret_sauce');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginNoUserNameAndNoPassword', async ({ sauce }) => {
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('', '');
-  await sauce.loginPage.verifyErrorMessageVisible();
+test('loginNoUserNameAndNoPassword', async ({ loginPage }) => {
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('', '');
+  await loginPage.verifyErrorMessageVisible();
 });
 
-test('loginProblemUser', async ({ sauce }) => {
-  await sauce.loginPage.gotoLoginPage();
-  await sauce.loginPage.verifyTitle();
-  await sauce.loginPage.inputLoginInfoAndClickLogin('problem_user', 'secret_sauce');
-  await sauce.inventoryPage.verifyTitle();
+test('loginProblemUser', async ({ loginPage , inventoryPage}) => {
+  await loginPage.gotoLoginPage();
+  await loginPage.verifyTitle();
+  await loginPage.inputLoginInfoAndClickLogin('problem_user', 'secret_sauce');
+  await inventoryPage.verifyTitle();
 });
