@@ -1,10 +1,10 @@
 import { test, } from '@playwright/test';
-import { InventoryPage } from './pageObjects/InventoryPage';
-import { LoginPage } from './pageObjects/LoginPage';
-import { CartPage } from './pageObjects/CartPage';
-import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon';
-import { CheckoutLoginPage } from './pageObjects/CheckOutLoginPage';
-import { CheckoutPage } from './pageObjects/CheckOutPage';
+import { InventoryPage } from './pageObjects/Inventory-Page';
+import { LoginPage } from './pageObjects/Login-Page';
+import { CartPage } from './pageObjects/Cart-Page';
+import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon-Page';
+import { CheckoutLoginPage } from './pageObjects/CheckoutLogin-Page';
+import { CheckoutPage } from './pageObjects/Checkout-Page';
 
 test('AddItemsAndCheckout', async ({ page }) => {
   const loginPage = new LoginPage(page);

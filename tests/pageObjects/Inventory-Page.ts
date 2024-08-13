@@ -1,4 +1,4 @@
-import {type Page, expect } from '@playwright/test';
+import { type Page, expect } from '@playwright/test';
 
 
 export class InventoryPage {
@@ -9,14 +9,11 @@ export class InventoryPage {
     }
 
     async gotoInventoryPage(): Promise<void> {
-        await this.page.goto('saucedemo.com/inventory');
+        await this.page.goto('/inventory');
     }
 
     async verifyTitle(): Promise<void> {
         await expect(this.page.locator('.title')).toContainText('Products');
-    }
-    async verifyHeaderTitle(): Promise<void> {
-        await expect(this.page.locator('[data-test="title"]')).toContainText('Products');
     }
 
     async addBackpackToCart(): Promise<void> {
@@ -29,15 +26,25 @@ export class InventoryPage {
 
         await this.page.locator('[data-test="remove-sauce-labs-backpack"]').click();
     }
+    async removeBikeLightFromCart(): Promise<void> {
+        await this.page.locator('[data-test="remove-sauce-labs-bike-light"]').click();
+    }
 
     async verifyBackpackAddItemButtonIsVisible(): Promise<void> {
         await expect(this.page.locator('[data-test="add-to-cart-sauce-labs-backpack"]')).toBeVisible();
     }
     async verifyBackpackDeleteButtonIsVisible(): Promise<void> {
-        await this.page.locator('[data-test="remove-sauce-labs-backpack"]').click();
+        await expect(this.page.locator('[data-test="remove-sauce-labs-backpack"]')).toBeVisible();
     }
 
-    async gotoBackpackPage(): Promise<void> {
+    async verifyBikeLightAddItemButtonIsVisible(): Promise<void> {
+        await expect(this.page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]')).toBeVisible();
+    }
+    async verifyBikeLightDeleteButtonIsVisible(): Promise<void> {
+        await expect(this.page.locator('[data-test="remove-sauce-labs-bike-light"]')).toBeVisible();
+    }
+
+    async clickOnBackpackImage(): Promise<void> {
         await this.page.locator('[class="inventory_item_img"][data-test="]').click();
     }
 
@@ -50,8 +57,19 @@ export class InventoryPage {
         else if (sortBy == 'za') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Test.allTheThings');
         else if (sortBy == 'hilo') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Fleece Jacket');
         else if (sortBy == 'lohi') await expect(this.page.getByTestId('inventory-item-name').first()).toContainText('Onesie');
-        else {console.error("sortBy must be 'az', 'za', 'hilo', or 'lohi' ");
+        else {
+            console.error("sortBy must be 'az', 'za', 'hilo', or 'lohi' ");
         }
+    }
+
+    //TODO modify to check for any items in cart and remove all
+    //currently checks for and removes only Backpack and Bike Light because those are all we currently test
+    async removeAllItems(): Promise<void> {
+        await this.gotoInventoryPage();
+        if (this.verifyBackpackDeleteButtonIsVisible())
+            await this.removeBackpackFromCart();
+        if (this.verifyBikeLightDeleteButtonIsVisible)
+            await this.removeBikeLightFromCart();
     }
 
 }

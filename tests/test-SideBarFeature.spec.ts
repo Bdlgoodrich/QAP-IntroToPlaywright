@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { InventoryPage } from './pageObjects/InventoryPage';
-import { LoginPage } from './pageObjects/LoginPage';
-import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon';
+import { InventoryPage } from './pageObjects/Inventory-Page';
+import { LoginPage } from './pageObjects/Login-Page';
+import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon-Page';
 
 test('loginValidUser', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -11,12 +11,12 @@ test('loginValidUser', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
   const sideBar = new SideBarAndCartIcon(page);
 
-  await inventoryPage.gotoBackpackPage();
+  await inventoryPage.clickOnBackpackTitle();
   await sideBar.openSideBar();
   await sideBar.sideBarGotoAllItems();
   await inventoryPage.verifyTitle();
 
-  await inventoryPage.gotoBackpackPage();
+  await inventoryPage.clickOnBackpackTitle();
   await sideBar.openSideBar();
   await sideBar.sideBarGotoAbout();
   await sideBar.verifyAboutPageTitle();

@@ -6,6 +6,11 @@ export class CheckoutLoginPage {
     constructor(page: Page) {
         this.page = page
     }
+
+    async goToCartPage(): Promise<void> {
+        await this.page.goto('/checkout-step-one');
+    }
+
     async inputLoginInfo(): Promise<void> {
         await this.page.locator('[data-test="firstName"]').fill('First');
         await this.page.locator('[data-test="lastName"]').fill('Last');

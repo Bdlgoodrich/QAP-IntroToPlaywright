@@ -8,6 +8,10 @@ export class CheckoutPage {
         this.page = page
     }
 
+    async goToCartPage(): Promise<void> {
+        await this.page.goto('/checkout-step-two');
+    }
+
     async clickCancelButton(): Promise<void> {
         await this.page.locator('[data-test="cancel"]').click();
     }

@@ -7,6 +7,10 @@ export class ProductPage {
         this.page = page
     }
 
+    async verifyCorrectItem(item: string): Promise<void>{
+        await expect(this.page.locator('[data-test="inventory-item-name"]')).toContainText("item");
+    }
+
     async verifyAddToCartButtonIsVisible(): Promise<void> {
         await expect(this.page.locator('[data-test="add-to-cart"]')).toBeVisible();
     }

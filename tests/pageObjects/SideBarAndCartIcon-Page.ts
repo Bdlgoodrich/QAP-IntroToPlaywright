@@ -1,5 +1,5 @@
 import {type Page, expect } from '@playwright/test';
-import {InventoryPage} from './InventoryPage'
+import {InventoryPage} from './Inventory-Page'
 
 export class SideBarAndCartIcon {
 
