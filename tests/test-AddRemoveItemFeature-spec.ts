@@ -1,6 +1,6 @@
 import { test, /*expect*/ } from './Fixtures/docFixture';
 
-test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, page, inventoryPage, sideBarAndCartIcon, cartPage,}) => {
+test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, page, inventoryPage, sideBarAndCartIcon, cartPage, }) => {
 
   //verify on inventory page and cart shows empty
   await inventoryPage.verifyTitle();
@@ -12,9 +12,11 @@ test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, page, inventoryP
   await inventoryPage.verifyBackpackDeleteButtonIsVisible();
   await sideBarAndCartIcon.verifyCartItemNumber(1);
 
-  //add bike light to cart, verify cart icon shows "2", remove backpack, verify button returns to "add" and cart shows 1
+  //add bike light to cart, verify cart icon shows 2 items
   await inventoryPage.addBikeLightToCart();
   await sideBarAndCartIcon.verifyCartItemNumber(2);
+
+  //remove backpack from cart, verify button changes from "remove" to "add" and cart icon shows "1"
   await inventoryPage.removeBackpackFromCart();
   await inventoryPage.verifyBackpackAddItemButtonIsVisible();
   await sideBarAndCartIcon.verifyCartItemNumber(1);
@@ -29,7 +31,7 @@ test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, page, inventoryP
 
 test('verifyAddAndRemoveFromProductPage', async ({ inventoryPage, backpackPage, sideBarAndCartIcon, cartPage, page, auth }) => {
 
-    inventoryPage.gotoInventoryPage();
+  inventoryPage.gotoInventoryPage();
 
   //verify on inventory page and cart shows empty
   await inventoryPage.verifyTitle();
@@ -59,7 +61,7 @@ test('verifyAddAndRemoveFromProductPage', async ({ inventoryPage, backpackPage, 
   await backpackPage.clickBackToProducts();
   await inventoryPage.verifyTitle();
 
-    //verify cart still contains bike light
-    await cartPage.goToCartPage();
-    await cartPage.verifyCartContainsBikeLight();
+  //verify cart still contains bike light
+  await cartPage.goToCartPage();
+  await cartPage.verifyCartContainsBikeLight();
 });
