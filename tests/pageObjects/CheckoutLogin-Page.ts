@@ -7,7 +7,7 @@ export class CheckoutLoginPage {
         this.page = page
     }
 
-    async goToCartPage(): Promise<void> {
+    async goToCheckoutLoginPage(): Promise<void> {
         await this.page.goto('/checkout-step-one');
     }
 
