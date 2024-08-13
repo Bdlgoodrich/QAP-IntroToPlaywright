@@ -7,6 +7,10 @@ export class ProductPage {
         this.page = page
     }
 
+    async gotoBackpackPage(): Promise<void> {
+        await this.page.goto('/inventory-item.html?id=4');
+    }
+
     async verifyCorrectItem(item: string): Promise<void>{
         await expect(this.page.locator('[data-test="inventory-item-name"]')).toContainText("item");
     }

@@ -1,20 +1,11 @@
 import { test } from "./Fixtures/docFixture";
 
-test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, loginPage }) => {
-  await inventoryPage.clickOnBackpackImage();
+test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, loginPage, backpackPage }) => {
+  await backpackPage.gotoBackpackPage();
   await sideBarAndCartIcon.openSideBar();
   await sideBarAndCartIcon.sideBarGotoAllItems();
   await inventoryPage.verifyTitle();
-
-  await sideBarAndCartIcon.openSideBar();
-  await sideBarAndCartIcon.sideBarGotoAbout();
-  await sideBarAndCartIcon.verifyAboutPageTitle();
-
-  await inventoryPage.clickOnBackpackImage();
-  await sideBarAndCartIcon.openSideBar();
-  await sideBarAndCartIcon.sideBarGotoAllItems();
-  await inventoryPage.verifyTitle();
-
+  
   await sideBarAndCartIcon.openSideBar();
   await sideBarAndCartIcon.sideBarGotoAbout();
   await sideBarAndCartIcon.verifyAboutPageTitle();

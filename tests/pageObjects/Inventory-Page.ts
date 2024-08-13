@@ -12,10 +12,6 @@ export class InventoryPage {
         await this.page.goto('/inventory');
     }
 
-    async gotoBackpackPage(): Promise<void> {
-        await this.page.goto('/inventory-item.html?id=4');
-    }
-
     async verifyTitle(): Promise<void> {
         expect(this.page.locator('.title')).toContainText('Products');
     }
@@ -48,7 +44,7 @@ export class InventoryPage {
     }
 
     async clickOnBackpackImage(): Promise<void> {
-        await this.page.locator('[class="inventory_item_img"][data-test="]').click();
+        await this.page.locator('[class="inventory_item_img"]').click();
     }
 
     //sortBy must be 'az', 'za', 'hilo', 'lohi' 

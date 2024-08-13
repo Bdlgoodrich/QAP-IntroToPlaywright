@@ -24,17 +24,9 @@ type MyFixtures = {
 // Extend base test by providing necessary pages and parameters.
 
 export const test = base.extend<MyFixtures>({
-    auth: async ({ page }, use, workerInfo) => {
-        const BASE_URL = workerInfo.project.use.baseURL ?? "not set in project"
-        const cookie = {
-            name: 'session-username',
-            value: 'standard_user',
-            url: BASE_URL,
-        }
 
-        await page.goto(BASE_URL)
-        await page.context().addCookies([cookie])
-        await use({ page })
+    loginPage: async ({ page }, use) => {
+        await use(new LoginPage(page));
     },
 
     inventoryPage: async ({ page }, use) => {
@@ -65,6 +57,18 @@ export const test = base.extend<MyFixtures>({
         await use(new CheckoutPage(page))
     },
 
+    auth: async ({ page }, use, workerInfo) => {
+        const BASE_URL = workerInfo.project.use.baseURL ?? "not set in project"
+        const cookie = {
+            name: 'session-username',
+            value: 'standard_user',
+            url: BASE_URL,
+        }
+
+        await page.goto(BASE_URL)
+        await page.context().addCookies([cookie])
+        await use({ page })
+    },
 
 });
 
