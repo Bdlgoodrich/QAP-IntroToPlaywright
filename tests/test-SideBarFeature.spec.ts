@@ -1,16 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { InventoryPage } from './pageObjects/Inventory-Page';
-import { LoginPage } from './pageObjects/Login-Page';
-import { SideBarAndCartIcon } from './pageObjects/SideBarAndCartIcon-Page';
+import { test } from "./Fixtures/docFixture";
 
-test('loginValidUser', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.gotoLoginPage();
-  await loginPage.verifyTitle();
-  await loginPage.inputLoginInfoAndClickLogin('standard_user', 'secret_sauce')
-  const inventoryPage = new InventoryPage(page);
-  const sideBar = new SideBarAndCartIcon(page);
-
+test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, loginPage }) => {
   await inventoryPage.clickOnBackpackTitle();
   await sideBar.openSideBar();
   await sideBar.sideBarGotoAllItems();
@@ -20,16 +10,28 @@ test('loginValidUser', async ({ page }) => {
   await sideBar.openSideBar();
   await sideBar.sideBarGotoAbout();
   await sideBar.verifyAboutPageTitle();
+};
+
+test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, loginPage }) => {
+
+  await inventoryPage.clickOnBackpackImage();
+  await sideBarAndCartIcon.openSideBar();
+  await sideBarAndCartIcon.sideBarGotoAllItems();
+  await inventoryPage.verifyTitle();
+
+  await sideBarAndCartIcon.openSideBar();
+  await sideBarAndCartIcon.sideBarGotoAbout();
+  await sideBarAndCartIcon.verifyAboutPageTitle();
 
   await inventoryPage.addBackpackToCart();
   await inventoryPage.sortItems('lohi');
-  await sideBar.sideBarReset();
-  await sideBar.verifyReset();
+  await sideBarAndCartIcon.sideBarReset();
+  await sideBarAndCartIcon.verifyReset();
 
-  await inventoryPage.gotoInventoryPage();
-  await sideBar.openSideBar();
-  await sideBar.sideBarLogout();
+  await sideBarAndCartIcon.openSideBar();
+  await sideBarAndCartIcon.sideBarLogout();
   await loginPage.verifyTitle();
   await inventoryPage.gotoInventoryPage();
-  
+  await inventoryPage.verifyBlank();
+
 });

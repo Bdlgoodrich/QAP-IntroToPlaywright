@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { test, /*expect*/ } from './Fixtures/docFixture';
 
 test('verifyAddAndRemoveItemsFromInventoryPage', async ({ auth, page, inventoryPage, sideBarAndCartIcon, cartPage,}) => {

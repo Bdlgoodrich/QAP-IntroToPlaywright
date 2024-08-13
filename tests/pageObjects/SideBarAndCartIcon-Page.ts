@@ -9,7 +9,7 @@ export class SideBarAndCartIcon {
         this.page = page
     }
 
-    async gotoCart(): Promise<void> {
+    async clickCartIcon(): Promise<void> {
         await this.page.locator('[data-test="shopping-cart-link"]').click();
     }
 
