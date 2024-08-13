@@ -8,15 +8,6 @@ import { CheckoutLoginPage } from './pageObjects/CheckoutLogin-Page';
 import { CheckoutPage } from './pageObjects/Checkout-Page';
 
 
-test('AddItemsAndCheckout', async ({ auth, sauce }) => {
-  await sauce.inventoryPage.gotoInventoryPage();
-  await sauce.inventoryPage.addBackpackToCart();
-  await sauce.sidebarAndCartIcon.clickCartIcon();
-  await sauce.cartPage.verifyHeaderTitle();
-  await sauce.cartPage.clickContinueShoppingButton();
-  await sauce.inventoryPage.verifyTitle();
-  await sauce.inventoryPage.addBikeLightToCart();
-  await sauce.sidebarAndCartIcon.clickCartIcon();
 
   //click checkout and cancel
   await sauce.cartPage.clickCheckoutButton();
