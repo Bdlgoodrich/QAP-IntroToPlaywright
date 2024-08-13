@@ -9,9 +9,6 @@ test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, l
   await sideBarAndCartIcon.openSideBar();
   await sideBarAndCartIcon.sideBarGotoAbout();
   await sideBarAndCartIcon.verifyAboutPageTitle();
-});
-
-test('sidebarOptions', async ({ auth, page, inventoryPage, sideBarAndCartIcon, loginPage }) => {
 
   await inventoryPage.clickOnBackpackImage();
   await sideBarAndCartIcon.openSideBar();
